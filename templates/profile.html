@@ -1,0 +1,18 @@
+{% block content %}
+    {% if driver_flag %}
+      
+    {% else %}
+      <div class="pofile_element">
+        <h4>Nie masz nadchodzących przejazdów jako kierowca</h4>
+      </div>
+    {% endif %}
+
+    {% if passenger_flag %}
+      
+    {% else %}
+      <div class="pofile_element">
+        <h4>Nie masz nadchodzących przejazdów jako pasażer</h4>
+      </div>
+    {% endif %}
+    
+    {% endblock %}

@@ -73,7 +73,7 @@ class Command(BaseCommand):
                 d_cigs = drs[j].cigs
                 d_pets = drs[j].pets
                 d_dep = drs[j].time_dep
-                d_arr = drs[j].time_arr
+                #d_arr = drs[j].time_arr
                 d_arr_stops_str = drs[j].stops_arr.split()
                 d_arr_stops = []
                 for el in d_arr_stops_str:
@@ -85,7 +85,7 @@ class Command(BaseCommand):
                 p_cigs = ps[i].cigs
                 p_pets = ps[i].pets
                 p_dep = ps[i].time_dep
-                p_arr = ps[i].time_arr
+                #p_arr = ps[i].time_arr
 
                 if d_start == p_start and d_end == p_end:
                     if d_cigs == False or (d_cigs == True and p_cigs == False):
@@ -160,6 +160,8 @@ class Command(BaseCommand):
         for i in range(len(ps)):
             for j in range(len(drs)):
                 if assign[i][j] == 1:
-                    ride = Ride(driver_username=drs[j].username, passenger_username=ps[i].username, date=drs[j].date, pick_up=ps[i].start, drop_off=ps[i].end)
+                    driver_obj = Driver.objects.get(id=drs[j].id)
+                    passenger_obj = Passenger.objects.get(id=ps[i].id)
+                    ride = Ride(driver_username=drs[j].username, passenger_username=ps[i].username, date=drs[j].date, pick_up=ps[i].start, drop_off=ps[i].end, driver_ride_id=driver_obj, passenger_ride_id=passenger_obj)
                     ride.save()
                     print('passenger ' + ps[i].username + 'rides with driver ' + drs[j].username)

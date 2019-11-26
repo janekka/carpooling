@@ -1,7 +1,8 @@
-from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from .forms import SignUpForm
 from django.shortcuts import render, redirect
+from drivers.models import Ride
+
 # Create your views here.
 def home_view(request, *args, **kwargs):
     info = {
@@ -27,3 +28,31 @@ def signup_view(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+def profile_view(request):
+    if request.user.is_authenticated:
+        driver_rides = Ride.objects.filter(driver_username = request.user.username)
+        passenger_rides = Ride.objects.filter(passenger_username = request.user.username)
+        
+        if len(driver_rides) == 0:
+            driver_flag = False
+        else:
+            driver_flag = True
+            for i in range(len(driver_rides)):
+                pass
+
+        if len(passenger_rides) == 0:
+            passenger_flag = False
+        else:
+            passenger_flag = True
+        
+        d_dates = driver_rides.date
+
+
+        info = {
+            'passenger_falg':passenger_flag,
+            'driver_flag':driver_flag
+        }
+        return render(request, 'profile.html', info)
+    else:
+        return redirect('/')

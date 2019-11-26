@@ -39,6 +39,8 @@ class Passenger(models.Model):
 
 class Ride(models.Model):
     ride_id = models.AutoField(primary_key=True)
+    driver_ride_id = models.ForeignKey(Driver, on_delete=models.CASCADE)
+    passenger_ride_id = models.ForeignKey(Passenger, on_delete=models.CASCADE)
     driver_username = models.TextField(default='noname')
     passenger_username = models.TextField(default='noname')
     date = models.DateField()
