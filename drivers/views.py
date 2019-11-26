@@ -19,17 +19,23 @@ def add_driver_view(request):
             args.append(el)
         args.append(form.cleaned_data['end'])
         arr_times = get_arrivals(args)
-        
+
+        for i in range(len(arr_times)):
+            arr_times[i] = epoch_time_dep + arr_times[i]
+
+        arr_times_str = ''
+        for el in arr_times[:-1]:
+            arr_times_str = arr_times_str + str(el) + ' '
 
         driver = Driver()
         driver.username = request.user.username
         driver.start = form.cleaned_data['start']
         driver.end = form.cleaned_data['end']
         driver.stops = form.cleaned_data['stops']
-        driver.stops_arr = 
+        driver.stops_arr = arr_times_str
         driver.date = form.cleaned_data['date']
         driver.time_dep = epoch_time_dep
-        driver.time_arr = epoch_time_dep + sum(arr_times)
+        driver.time_arr = arr_times[-1]
         driver.car_model = form.cleaned_data['car_model']
         driver.car_cap = form.cleaned_data['car_cap']
         driver.cigs = form.cleaned_data['cigs']

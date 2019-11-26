@@ -4,7 +4,11 @@ from .forms import SignUpForm
 from django.shortcuts import render, redirect
 # Create your views here.
 def home_view(request, *args, **kwargs):
-    return render(request, 'home.html', {'user':request.user.is_authenticated})
+    info = {
+        'user':request.user.is_authenticated,
+        'username':request.user.username
+    }
+    return render(request, 'home.html', info)
 
 def signup_view(request):
     form = SignUpForm(request.POST)

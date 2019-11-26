@@ -24,7 +24,13 @@ def get_arrivals(args):
     for i in range(len(result['rows'])):
         travel_times.append(result['rows'][i]['elements'][i]['duration']['value'])
     
-    return travel_times
+    arr_times = []
+    for i in range(len(travel_times)):
+        arr_times.append(sum(travel_times[:i+1]))
+ 
+    return arr_times
+
+print(get_arrivals(['Wroclaw', 'Lodz', 'Krakow', 'Gdansk']))
 
 
 

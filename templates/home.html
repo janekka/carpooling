@@ -5,13 +5,20 @@
     <title>Home</title>
 </head>
   <body>
-    <div class='home_item'>
-        <a href="/login/">Login</a>
-    </div>
-    <div class='home_item'>
-            <a href="/signup/">Rejestracja</a>
-        </div>
     <div class="container">
+
+        {% block content %}
+        {% if user %}
+          Witaj {{ username }}!
+          <p><a href="{% url 'logout' %}">Wyloguj się</a></p>
+        {% else %}
+          <p>You are not logged in</p>
+          <a href="{% url 'login' %}">Logowanie</a> <br>
+          <a href="/signup/">Rejestracja</a> <br>
+        {% endif %}
+        {% endblock %}
+
+
     {% block body_block %}
     {{user}}
     {% endblock %}
