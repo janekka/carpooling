@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
-from accounts.views import home_view, signup_view
+from accounts.views import home_view, signup_view, profile_view
 from drivers.views import add_driver_view, add_passenger_view
 
 
@@ -28,6 +28,7 @@ urlpatterns = [
     path('', include('django.contrib.auth.urls')),
     path('add_driver/', add_driver_view, name='dodaj przejazd'),
     path('add_passenger/', add_passenger_view, name='dodaj przejazd'),
+    path('profile/', profile_view, name='profil'),
 ]
 
 

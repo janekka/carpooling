@@ -38,20 +38,22 @@ def profile_view(request):
             driver_flag = False
         else:
             driver_flag = True
-            for i in range(len(driver_rides)):
-                pass
 
         if len(passenger_rides) == 0:
             passenger_flag = False
+           
         else:
             passenger_flag = True
+           
         
-        d_dates = driver_rides.date
+        #d_dates = driver_rides.date
 
 
         info = {
-            'passenger_falg':passenger_flag,
-            'driver_flag':driver_flag
+            'passenger_flag':passenger_flag,
+            'driver_flag':driver_flag,
+            'driver_rides':driver_rides,
+            'passenger_rides':passenger_rides,
         }
         return render(request, 'profile.html', info)
     else:
