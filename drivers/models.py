@@ -48,3 +48,4 @@ class Ride(models.Model):
     drop_off = models.TextField()
 
 
+

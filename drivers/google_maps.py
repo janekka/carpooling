@@ -30,9 +30,5 @@ def get_arrivals(args):
  
     return arr_times
 
-print(get_arrivals(['Wroclaw', 'Lodz', 'Krakow', 'Gdansk']))
-
-
-
 
 

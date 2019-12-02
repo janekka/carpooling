@@ -57,4 +57,4 @@ def profile_view(request):
         }
         return render(request, 'profile.html', info)
     else:
-        return redirect('/')
+        return redirect('home')

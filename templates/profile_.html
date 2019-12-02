@@ -1,4 +1,7 @@
+{% extends 'base.html' %}
+
 {% block content %}
+  <div class="container">
     {% if driver_flag %}
       <table>
         <tr>
@@ -46,5 +49,5 @@
         <h4>Nie masz nadchodzących przejazdów jako pasażer</h4>
       </div>
     {% endif %}
-    
+  </div>
     {% endblock %}
